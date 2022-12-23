@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <RootNamespace>Gofore.Demo.MovieCatalog.API</RootNamespace>
+        <AssemblyName>Gofore.Demo.MoviceCatalog.API</AssemblyName>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <UserSecretsId>765d91a8-878a-4353-97ac-ffec1597e4a1</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerDefaultTag>latest</DockerDefaultTag>
+        <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Remove="SeedData\movies-compact.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="SeedData\movies-compact.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MovieCatalog.Data\MovieCatalog.Data.csproj" />
+      <ProjectReference Include="..\MovieCatalog.Domain\MovieCatalog.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Gofore.Demo.MovieCatalog.Tests" />
+    </ItemGroup>
+
+</Project>

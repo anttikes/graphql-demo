@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>Gofore.Demo.MovieCatalog.Data</RootNamespace>
+        <AssemblyName>Gofore.Demo.MoviceCatalog.Data</AssemblyName>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Gofore.Demo.MovieCatalog.Tests" />
+    </ItemGroup>
+    
+</Project>

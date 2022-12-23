@@ -1,0 +1,36 @@
+version: '3.4'
+
+networks:
+   default:
+     name: 'gofore-demo-movie-catalog-network'
+
+services:
+  moviecatalog.api:
+    image: ${DOCKER_REGISTRY-}movie-catalog.api
+    container_name: movie-catalog.api
+    depends_on:
+      - mongo
+    build:
+      context: .
+      dockerfile: MovieCatalog.API/Dockerfile
+    environment:
+      MONGODB_URL: mongodb://superuser:1ns4NElyC0mpl3xP4ssW0rd@mongodb:27017/
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: superuser
+      MONGO_INITDB_ROOT_PASSWORD: 1ns4NElyC0mpl3xP4ssW0rd
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: superuser
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 1ns4NElyC0mpl3xP4ssW0rd
+      ME_CONFIG_MONGODB_URL: mongodb://superuser:1ns4NElyC0mpl3xP4ssW0rd@mongodb:27017/ 
