@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <RootNamespace>Gofore.Demo.MovieCatalog.API</RootNamespace>
-        <AssemblyName>Gofore.Demo.MoviceCatalog.API</AssemblyName>
+        <AssemblyName>Gofore.Demo.MovieCatalog.API</AssemblyName>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -25,12 +25,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MovieCatalog.Data\MovieCatalog.Data.csproj" />
+      <ProjectReference Include="..\MovieCatalog.Persistence\MovieCatalog.Persistence.csproj" />
       <ProjectReference Include="..\MovieCatalog.Domain\MovieCatalog.Domain.csproj" />
     </ItemGroup>
 
