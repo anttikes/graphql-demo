@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieCatalog.Tests", "MovieCatalog.Tests\MovieCatalog.Tests.csproj", "{98DC85FA-F290-4FB1-825F-D9618CDB74BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieCatalog.Data", "MovieCatalog.Data\MovieCatalog.Data.csproj", "{B3ECB0D7-0C35-485E-BF05-3467CE61C110}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieCatalog.Persistence", "MovieCatalog.Persistence\MovieCatalog.Persistence.csproj", "{B3ECB0D7-0C35-485E-BF05-3467CE61C110}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <RootNamespace>Gofore.Demo.MovieCatalog.Domain</RootNamespace>
-        <AssemblyName>Gofore.Demo.MoviceCatalog.Domain</AssemblyName>
+        <AssemblyName>Gofore.Demo.MovieCatalog.Domain</AssemblyName>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>

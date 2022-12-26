@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>Gofore.Demo.MovieCatalog.Tests</RootNamespace>
-    <AssemblyName>Gofore.Demo.MoviceCatalog.Tests</AssemblyName>
+    <AssemblyName>Gofore.Demo.MovieCatalog.Tests</AssemblyName>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MovieCatalog.API\MovieCatalog.API.csproj" />
-    <ProjectReference Include="..\MovieCatalog.Data\MovieCatalog.Data.csproj" />
+    <ProjectReference Include="..\MovieCatalog.Persistence\MovieCatalog.Persistence.csproj" />
     <ProjectReference Include="..\MovieCatalog.Domain\MovieCatalog.Domain.csproj" />
   </ItemGroup>
 
