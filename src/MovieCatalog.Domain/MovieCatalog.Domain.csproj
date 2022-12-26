@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <RootNamespace>Gofore.Demo.MovieCatalog.Domain</RootNamespace>
         <AssemblyName>Gofore.Demo.MovieCatalog.Domain</AssemblyName>
@@ -11,6 +10,5 @@
 
     <ItemGroup>
         <InternalsVisibleTo Include="Gofore.Demo.MovieCatalog.Tests" />
-    </ItemGroup>
-    
+    </ItemGroup>    
 </Project>

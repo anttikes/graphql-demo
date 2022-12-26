@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <RootNamespace>Gofore.Demo.MovieCatalog.Tests</RootNamespace>
     <AssemblyName>Gofore.Demo.MovieCatalog.Tests</AssemblyName>
@@ -28,5 +27,4 @@
     <ProjectReference Include="..\MovieCatalog.Persistence\MovieCatalog.Persistence.csproj" />
     <ProjectReference Include="..\MovieCatalog.Domain\MovieCatalog.Domain.csproj" />
   </ItemGroup>
-
 </Project>

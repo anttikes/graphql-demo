@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
     <PropertyGroup>
         <RootNamespace>Gofore.Demo.MovieCatalog.API</RootNamespace>
         <AssemblyName>Gofore.Demo.MovieCatalog.API</AssemblyName>
@@ -21,12 +20,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MovieCatalog.Persistence\MovieCatalog.Persistence.csproj" />
-      <ProjectReference Include="..\MovieCatalog.Domain\MovieCatalog.Domain.csproj" />
+        <ProjectReference Include="..\MovieCatalog.Persistence\MovieCatalog.Persistence.csproj" />
+        <ProjectReference Include="..\MovieCatalog.Domain\MovieCatalog.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <InternalsVisibleTo Include="Gofore.Demo.MovieCatalog.Tests" />
     </ItemGroup>
-
 </Project>
