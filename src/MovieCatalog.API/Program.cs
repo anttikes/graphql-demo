@@ -10,19 +10,9 @@ public static class Program
         var app = CreateHostBuilder(args)
                     .Build();
 
-        app.MapGet("/", RootHandler);
-
-        app.MapGraphQL("/graphql");
+        app.MapGraphQL("/");
 
         app.Run();
-    }
-
-    private static Task RootHandler(HttpContext context)
-    {
-        context.Response.StatusCode = StatusCodes.Status307TemporaryRedirect;
-        context.Response.Headers.Location = "/graphql";
-
-        return Task.CompletedTask;
     }
 
     public static WebApplicationBuilder CreateHostBuilder(string[] args)
@@ -41,11 +31,14 @@ public static class Program
 
         builder.Services
             .AddGraphQLServer()
-            .BindRuntimeType<ushort, UnsignedShortType>()
+            .AddType<UploadType>()
+            .AddType<UnsignedShortType>()
             .RegisterDbContext<MovieContext>(DbContextKind.Pooled)
             .AddQueryType()
-                .AddTypeExtension<Gofore.Demo.MovieCatalog.API.GraphQL.Movies.Query>()
-                .AddTypeExtension<Gofore.Demo.MovieCatalog.API.GraphQL.People.Query>();
+                .AddTypeExtension<GraphQL.Movies.Queries>()
+                .AddTypeExtension<GraphQL.People.Queries>()
+            .AddMutationType()
+                .AddTypeExtension<GraphQL.Files.Mutations>();
 
         // Returning at this stage allows EF Core migrations to work against the API project
         return builder;
