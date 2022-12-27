@@ -10,9 +10,19 @@ public static class Program
         var app = CreateHostBuilder(args)
                     .Build();
 
-        app.MapGraphQL();
+        app.MapGet("/", RootHandler);
+
+        app.MapGraphQL("/graphql");
 
         app.Run();
+    }
+
+    private static Task RootHandler(HttpContext context)
+    {
+        context.Response.StatusCode = StatusCodes.Status307TemporaryRedirect;
+        context.Response.Headers.Location = "/graphql";
+
+        return Task.CompletedTask;
     }
 
     public static WebApplicationBuilder CreateHostBuilder(string[] args)
@@ -37,6 +47,7 @@ public static class Program
                 .AddTypeExtension<Gofore.Demo.MovieCatalog.API.GraphQL.Movies.Query>()
                 .AddTypeExtension<Gofore.Demo.MovieCatalog.API.GraphQL.People.Query>();
 
+        // Returning at this stage allows EF Core migrations to work against the API project
         return builder;
     }
 }
