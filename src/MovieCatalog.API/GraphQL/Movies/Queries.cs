@@ -4,7 +4,7 @@ using Gofore.Demo.MovieCatalog.Persistence.Repositories;
 namespace Gofore.Demo.MovieCatalog.API.GraphQL.Movies;
 
 [ExtendObjectType("Query")]
-public sealed class Query
+public sealed class Queries
 {
     public IQueryable<Movie> GetMovies(MovieContext context) => context.Movies;
 }
