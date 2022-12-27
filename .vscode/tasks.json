@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/MovieCatalog.API/MovieCatalog.API.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build: debug",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "goforedemo:dev",
+                "target": "base",
+                "dockerfile": "${workspaceFolder}/src/MovieCatalog.API/Dockerfile",
+                "context": "${workspaceFolder}",
+                "pull": true
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/MovieCatalog.API/MovieCatalog.API.csproj"
+            }
+        },        
+        {
+            "type": "docker-run",
+            "label": "docker-run: debug",
+            "dependsOn": [
+                "docker-build: debug"
+            ],
+            "dockerRun": {
+                "network": "gofore-demo-network",
+                "env": {
+                    "SQL_CONNECTION_STRING": "Server=sqlserver; Database=MovieCatalog; Encrypt=True; TrustServerCertificate=True; User ID=sa; Password=comPL3x-p4SSw0rd"
+                }                
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/MovieCatalog.API/MovieCatalog.API.csproj",
+                "enableDebugging": true
+            }
+        }
+    ]
+}
