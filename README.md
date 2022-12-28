@@ -8,7 +8,7 @@ This demo uses the following technologies:
 - .NET Core 6.0
 - ASP.NET Core Web API
 - Hot Chocolate GraphQL framework
-- Entity Framework Core & EF Core Migrations
+- Entity Framework Core, EF Core Migrations and EF Core Compiled Models
  
 ## Running the demo
 To run the application, the following prerequirements should be met:
@@ -34,5 +34,4 @@ After installing the prerequirements, follow these instructions:
 9. Issue `docker compose --project-directory "src" stop` to stop the containers
 
 ## Notes
-The GraphQL API does not support modifying the actors participating in a movie or setting the director for a movie. The root cause is the use of constructor-based entity classes without property setters. These are not properly supported by the Hot Chocolate framework. See https://github.com/ChilliCream/hotchocolate/issues/4387 for more details.
-     
+The GraphQL API does not support modifying the actors participating in a movie or setting the director for a movie. The root cause is the use of constructor-based entity classes with no property setters. These are not properly supported by the Hot Chocolate framework. See https://github.com/ChilliCream/hotchocolate/issues/4387 for more details. To fix this, the domain library would have to be refactored so that all business logic is extracted away from the entities themselves.
