@@ -3,8 +3,18 @@ using Gofore.Demo.MovieCatalog.Persistence.Repositories;
 
 namespace Gofore.Demo.MovieCatalog.API.GraphQL.People;
 
+/// <summary>
+/// Defines the root level queries provided by this area
+/// </summary>
 [ExtendObjectType("Query")]
-public sealed class Queries
+internal sealed class Queries
 {
+    /// <summary>
+    /// Search for people based on specific criteria
+    /// </summary>
+    /// <param name="context">Entity Framework context to use for querying</param>
+    /// <returns>A list of <see cref="Person" /> object that match the criteria</returns>
+    [UseProjection]
+    [UseFiltering]
     public IQueryable<Person> GetPeople(MovieContext context) => context.People;
 }

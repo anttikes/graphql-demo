@@ -15,7 +15,7 @@ public static class Program
         app.Run();
     }
 
-    public static WebApplicationBuilder CreateHostBuilder(string[] args)
+    private static WebApplicationBuilder CreateHostBuilder(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -34,11 +34,15 @@ public static class Program
             .AddType<UploadType>()
             .AddType<UnsignedShortType>()
             .RegisterDbContext<MovieContext>(DbContextKind.Pooled)
-            .AddQueryType()
+            .AddQueryType(descriptor => descriptor.Description("Contains the available query operations"))
                 .AddTypeExtension<GraphQL.Movies.Queries>()
                 .AddTypeExtension<GraphQL.People.Queries>()
-            .AddMutationType()
-                .AddTypeExtension<GraphQL.Files.Mutations>();
+            .AddMutationType(descriptor => descriptor.Description("Contains the available mutations"))
+                .AddTypeExtension<GraphQL.Files.Mutations>()
+            .AddTypeExtension<GraphQL.Movies.MovieTypeExtension>()
+            .AddTypeExtension<GraphQL.People.PersonTypeExtension>()
+            .AddProjections()
+            .AddFiltering();
 
         // Returning at this stage allows EF Core migrations to work against the API project
         return builder;

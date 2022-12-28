@@ -2,7 +2,10 @@ using System.Text.Json.Serialization;
 
 namespace Gofore.Demo.MovieCatalog.API.GraphQL.Files;
 
-public sealed class Movie
+/// <summary>
+/// Facilitates deserialization of initial movie data from the JSON format
+/// </summary>
+internal sealed class Movie
 {
     public string Name { get; }
     public ushort Year { get; }
@@ -36,7 +39,7 @@ public sealed class Movie
     }
 }
 
-public sealed class Actor
+internal sealed class Actor
 {
     public string FirstName { get; }
     public string LastName { get; }
@@ -49,7 +52,7 @@ public sealed class Actor
     }
 }
 
-public sealed class Director
+internal sealed class Director
 {
     public string FirstName { get; }
     public string LastName { get; }

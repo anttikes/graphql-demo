@@ -1,5 +1,4 @@
 using System.Text.Json;
-using Gofore.Demo.MovieCatalog.Domain.Models;
 using Gofore.Demo.MovieCatalog.Persistence.Repositories;
 
 namespace Gofore.Demo.MovieCatalog.API.GraphQL.Files;
@@ -7,11 +6,18 @@ namespace Gofore.Demo.MovieCatalog.API.GraphQL.Files;
 [ExtendObjectType("Mutation")]
 public sealed class Mutations
 {
-    public async Task<int> UploadInitialData(IFile file, MovieContext context, CancellationToken cancellationToken)
+    /// <summary>
+    /// Uploads and parses the specified file and seeds the database with initial data; only usable when the database is considered empty
+    /// </summary>
+    /// <param name="file">File containing the initial data</param>
+    /// <param name="context">Entity Framework context to use for saving data</param>
+    /// <param name="cancellationToken">Token used to cancel the operation</param>
+    /// <returns></returns>
+    public async Task<bool> UploadInitialData(IFile file, MovieContext context, CancellationToken cancellationToken)
     {
         if (context.Movies.Any() || context.People.Any())
         {
-            return 0;
+            return false;
         }
 
         await using (Stream content = file.OpenReadStream())
@@ -21,7 +27,7 @@ public sealed class Mutations
 
             if (movies is null)
             {
-                return 0;
+                return false;
             }
 
             foreach(var movie in movies)
@@ -44,7 +50,7 @@ public sealed class Mutations
 
             context.SaveChanges();
 
-            return movies.Length;
+            return true;
         }
     }
 }

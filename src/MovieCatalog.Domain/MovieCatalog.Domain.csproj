@@ -8,6 +8,10 @@
         <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>        
+    </PropertyGroup>
+
     <ItemGroup>
         <InternalsVisibleTo Include="Gofore.Demo.MovieCatalog.Tests" />
     </ItemGroup>    
