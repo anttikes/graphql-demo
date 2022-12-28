@@ -1,4 +1,4 @@
-# Demo: GraphQL and code-first Entity Framework database
+# Demo: GraphQL and Entity Framework
 This demonstration presents a simple movie catalog with a GraphQL-based API.
 
 ## Technology stack
