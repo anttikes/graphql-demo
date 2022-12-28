@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="../../deploy/movies-compact.json" CopyToOutputDirectory="PreserveNewest" /> 
+  </ItemGroup>
+  
+  <ItemGroup>
     <ProjectReference Include="..\MovieCatalog.API\MovieCatalog.API.csproj" />
     <ProjectReference Include="..\MovieCatalog.Persistence\MovieCatalog.Persistence.csproj" />
     <ProjectReference Include="..\MovieCatalog.Domain\MovieCatalog.Domain.csproj" />
