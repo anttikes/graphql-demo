@@ -10,7 +10,7 @@ This demo uses the following technologies:
 - Hot Chocolate GraphQL framework
 - Entity Framework Core & EF Core Migrations
  
-## Running the application
+## Running the demo
 To run the application, the following prerequirements should be met:
 - Docker Desktop (or a Linux equivalent with Docker host, client and Docker Compose plugin)
 - .NET Core SDK 6.0 or later
@@ -30,4 +30,8 @@ After installing the prerequirements, follow these instructions:
    - Issue `dotnet ef database update --startup-project "src/MovieCatalog.API/MovieCatalog.API.csproj" --project "src/MovieCatalog.Persistence/MovieCatalog.Persistence.csproj"`
 6. (If on Linux) Make the `deploy/deployInitialData.sh` executable, and issue `./deploy/deployInitialData.sh`
 7. (If on Windows) Use any suitable tool to send a similar network request as depicted in the file
+8. Open a browser window, navigate to `localhost:32741` and start running GraphQL queries
+
+## Notes
+The GraphQL API does not support modifying the actors participating in a movie or setting the director for a movie. The root cause is the use of constructor-based entity classes without property setters. These are not properly supported by the Hot Chocolate framework. See https://github.com/ChilliCream/hotchocolate/issues/4387 for more details.
      
