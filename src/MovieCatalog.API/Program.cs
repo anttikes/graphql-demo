@@ -23,6 +23,9 @@ public static class Program
         {
             var migrationAssemblyName = typeof(MovieContext).Assembly.GetName().Name;
 
+#if !DEBUG
+            optionsBuilder.UseModel(MovieCatalog.Persistence.CompiledModels.MovieContextModel.Instance);
+#endif
             optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING"), opt => opt.MigrationsAssembly(migrationAssemblyName));
 
             optionsBuilder.EnableDetailedErrors();
