@@ -29,7 +29,7 @@
             "netCore": {
                 "appProject": "${workspaceFolder}/src/MovieCatalog.API/MovieCatalog.API.csproj"
             }
-        },        
+        },
         {
             "type": "docker-run",
             "label": "docker-run: debug",
@@ -37,10 +37,10 @@
                 "docker-build: debug"
             ],
             "dockerRun": {
-                "network": "gofore-demo-network",
+                "network": "graphql-demo-network",
                 "env": {
                     "SQL_CONNECTION_STRING": "Server=sqlserver; Database=MovieCatalog; Encrypt=True; TrustServerCertificate=True; User ID=sa; Password=comPL3x-p4SSw0rd"
-                }                
+                }
             },
             "netCore": {
                 "appProject": "${workspaceFolder}/src/MovieCatalog.API/MovieCatalog.API.csproj",
