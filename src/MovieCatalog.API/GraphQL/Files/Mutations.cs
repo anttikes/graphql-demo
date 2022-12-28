@@ -4,7 +4,7 @@ using Gofore.Demo.MovieCatalog.Persistence.Repositories;
 namespace Gofore.Demo.MovieCatalog.API.GraphQL.Files;
 
 [ExtendObjectType("Mutation")]
-public sealed class Mutations
+internal sealed class Mutations
 {
     /// <summary>
     /// Uploads and parses the specified file and seeds the database with initial data; only usable when the database is considered empty

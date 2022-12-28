@@ -3,9 +3,6 @@ using Gofore.Demo.MovieCatalog.Persistence.Repositories;
 
 namespace Gofore.Demo.MovieCatalog.API.GraphQL.People;
 
-/// <summary>
-/// Defines the root level queries provided by this area
-/// </summary>
 [ExtendObjectType("Query")]
 internal sealed class Queries
 {

@@ -226,7 +226,7 @@ public sealed class Movie
     /// <summary>
     /// Sets the synopsis of the movie
     /// </summary>
-    /// <param name="newSynopsis">The new synopsis</param>
+    /// <param name="newSynopsis">The new synopsis of the movie</param>
     /// <exception cref="ArgumentException">The provided argument was invalid</exception>
     [MemberNotNull(nameof(Synopsis))]
     public void SetSynopsis(string newSynopsis)
