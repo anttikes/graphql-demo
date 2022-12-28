@@ -3,7 +3,7 @@ using Gofore.Demo.MovieCatalog.API.GraphQL.Files;
 
 namespace Gofore.Demo.MovieCatalog.Tests.API.GraphQL.Files;
 
-public class FileStructureTests
+public class InitialDataTests
 {
     [Fact]
     public void DeserializationShouldSucceed()
