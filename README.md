@@ -26,11 +26,12 @@ After installing the prerequirements, follow these instructions:
 4. Copy the connection string from `docker-compose.yml`, replacing server name with `localhost`
 5. Open a shell prompt, and
    - Set the SQL_CONNECTION_STRING environment variable's value to the connection string from step #4
-   - Issue `docker compose --project-directory src up -d`
+   - Issue `docker compose --project-directory "src" up -d`
    - Issue `dotnet ef database update --startup-project "src/MovieCatalog.API/MovieCatalog.API.csproj" --project "src/MovieCatalog.Persistence/MovieCatalog.Persistence.csproj"`
 6. (If on Linux) Make the `deploy/deployInitialData.sh` executable, and issue `./deploy/deployInitialData.sh`
 7. (If on Windows) Use any suitable tool to send a similar network request as depicted in the file
 8. Open a browser window, navigate to `localhost:32741` and start running GraphQL queries
+9. Issue `docker compose --project-directory "src" stop` to stop the containers
 
 ## Notes
 The GraphQL API does not support modifying the actors participating in a movie or setting the director for a movie. The root cause is the use of constructor-based entity classes without property setters. These are not properly supported by the Hot Chocolate framework. See https://github.com/ChilliCream/hotchocolate/issues/4387 for more details.
