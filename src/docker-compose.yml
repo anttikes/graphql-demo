@@ -8,20 +8,20 @@ services:
   moviecatalog.api:
     image: ${DOCKER_REGISTRY-}movie-catalog.api
     container_name: movie-catalog.api
+    ports:
+      - 32741:80
     depends_on:
       - sqlserver
     build:
       context: .
       dockerfile: MovieCatalog.API/Dockerfile
     environment:
-      SQL_CONNECTION_STRING: "Server=localhost; Database=MovieCatalog; Encrypt=True; TrustServerCertificate=True; User ID=sa; Password=comPL3x-p4SSw0rd"
+      SQL_CONNECTION_STRING: "Server=sqlserver; Database=MovieCatalog; Encrypt=True; TrustServerCertificate=True; User ID=sa; Password=comPL3x-p4SSw0rd"
 
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: sqlserver
     restart: always
-    ports:
-      - 1433:1433
     environment:
       ACCEPT_EULA: "y"
-      MSSQL_SA_PASSWORD: "comPL3x-p4SSw0rd" 
+      MSSQL_SA_PASSWORD: "comPL3x-p4SSw0rd"
