@@ -41,7 +41,6 @@ public static class Program
                 .AddTypeExtension<GraphQL.Files.Mutations>()
             .AddTypeExtension<GraphQL.Movies.MovieTypeExtension>()
             .AddTypeExtension<GraphQL.People.PersonTypeExtension>()
-            .AddProjections()
             .AddFiltering();
 
         // Returning at this stage allows EF Core migrations to work against the API project
