@@ -1,7 +1,7 @@
-using Gofore.Demo.MovieCatalog.Persistence.Repositories;
+using MovieCatalog.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace Gofore.Demo.MovieCatalog.API;
+namespace MovieCatalog.API;
 
 public static class Program
 {

@@ -1,7 +1,7 @@
-using Gofore.Demo.MovieCatalog.Domain.Models;
-using Gofore.Demo.MovieCatalog.Persistence.Repositories;
+using MovieCatalog.Domain.Models;
+using MovieCatalog.Persistence.Repositories;
 
-namespace Gofore.Demo.MovieCatalog.API.GraphQL.Movies;
+namespace MovieCatalog.API.GraphQL.Movies;
 
 [ExtendObjectType("Mutation")]
 internal sealed class Mutations
@@ -68,7 +68,7 @@ internal sealed class Mutations
 
         return true;
     }
-    
+
     /// <summary>
     /// Sets the year of publication of the movie
     /// </summary>
@@ -91,7 +91,7 @@ internal sealed class Mutations
 
         return true;
     }
-    
+
     /// <summary>
     /// Sets the age limit of the movie
     /// </summary>
@@ -181,7 +181,7 @@ internal sealed class Mutations
 
         return true;
     }
-    
+
     /// <summary>
     /// Sets the synopsis of the movie
     /// </summary>

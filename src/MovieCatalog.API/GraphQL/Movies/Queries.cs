@@ -1,7 +1,7 @@
-using Gofore.Demo.MovieCatalog.Domain.Models;
-using Gofore.Demo.MovieCatalog.Persistence.Repositories;
+using MovieCatalog.Domain.Models;
+using MovieCatalog.Persistence.Repositories;
 
-namespace Gofore.Demo.MovieCatalog.API.GraphQL.Movies;
+namespace MovieCatalog.API.GraphQL.Movies;
 
 [ExtendObjectType("Query")]
 internal sealed class Queries
@@ -12,5 +12,5 @@ internal sealed class Queries
     /// <param name="context">Entity Framework context to use for querying</param>
     /// <returns>A list of <see cref="Movie" /> object that match the criteria</returns>
     [UseFiltering]
-    public IQueryable<Movie> GetMovies(MovieContext context) => context.Movies;    
+    public IQueryable<Movie> GetMovies(MovieContext context) => context.Movies;
 }

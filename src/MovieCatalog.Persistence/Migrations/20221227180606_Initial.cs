@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Gofore.Demo.MovieCatalog.Persistence.Migrations
+namespace MovieCatalog.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

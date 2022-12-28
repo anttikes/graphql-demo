@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Gofore.Demo.MovieCatalog.API.GraphQL.Files;
+namespace MovieCatalog.API.GraphQL.Files;
 
 /// <summary>
 /// Facilitates deserialization of initial movie data from the JSON format
@@ -18,13 +18,13 @@ internal sealed class Movie
 
     [JsonConstructor]
     public Movie(
-        string name, 
-        ushort year, 
-        IEnumerable<string> genres, 
-        byte ageLimit, 
-        byte rating, 
-        IEnumerable<Actor> actors, 
-        Director director, 
+        string name,
+        ushort year,
+        IEnumerable<string> genres,
+        byte ageLimit,
+        byte rating,
+        IEnumerable<Actor> actors,
+        Director director,
         string synopsis
     )
     {

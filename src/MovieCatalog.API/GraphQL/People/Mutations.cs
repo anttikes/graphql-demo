@@ -1,7 +1,7 @@
-using Gofore.Demo.MovieCatalog.Domain.Models;
-using Gofore.Demo.MovieCatalog.Persistence.Repositories;
+using MovieCatalog.Domain.Models;
+using MovieCatalog.Persistence.Repositories;
 
-namespace Gofore.Demo.MovieCatalog.API.GraphQL.People;
+namespace MovieCatalog.API.GraphQL.People;
 
 [ExtendObjectType("Mutation")]
 internal sealed class Mutations

@@ -1,7 +1,7 @@
-using Gofore.Demo.MovieCatalog.Domain.Models;
+using MovieCatalog.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Gofore.Demo.MovieCatalog.Persistence.Repositories;
+namespace MovieCatalog.Persistence.Repositories;
 
 public class MovieContext : DbContext
 {
@@ -15,7 +15,7 @@ public class MovieContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Movie>(entityBuilder =>
-        {   
+        {
             entityBuilder.ToTable(nameof(Movies));
 
             entityBuilder.HasKey(x => x.Id)
@@ -33,9 +33,9 @@ public class MovieContext : DbContext
             entityBuilder.HasMany(x => x.Actors)
                          .WithMany(x => x.Appearances)
                          .UsingEntity(joinEntity =>
-                         {  
+                         {
                              joinEntity.ToTable("Actors");
-                             
+
                              joinEntity.Property<Guid>("PersonId");
                              joinEntity.Property<Guid>("MovieId");
 

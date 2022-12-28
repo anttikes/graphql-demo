@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <RootNamespace>Gofore.Demo.MovieCatalog.Domain</RootNamespace>
-        <AssemblyName>Gofore.Demo.MovieCatalog.Domain</AssemblyName>
+        <RootNamespace>MovieCatalog.Domain</RootNamespace>
+        <AssemblyName>MovieCatalog.Domain</AssemblyName>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -9,10 +9,10 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>        
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
-        <InternalsVisibleTo Include="Gofore.Demo.MovieCatalog.Tests" />
-    </ItemGroup>    
+        <InternalsVisibleTo Include="MovieCatalog.Tests" />
+    </ItemGroup>
 </Project>

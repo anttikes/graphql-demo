@@ -1,7 +1,7 @@
 using System.Text.Json;
-using Gofore.Demo.MovieCatalog.Persistence.Repositories;
+using MovieCatalog.Persistence.Repositories;
 
-namespace Gofore.Demo.MovieCatalog.API.GraphQL.Files;
+namespace MovieCatalog.API.GraphQL.Files;
 
 [ExtendObjectType("Mutation")]
 internal sealed class Mutations
@@ -40,7 +40,7 @@ internal sealed class Mutations
 
                 newMovie.SetDirector(new(movie.Director.FirstName, movie.Director.LastName));
 
-                foreach(var actor in movie.Actors)                
+                foreach(var actor in movie.Actors)
                 {
                     newMovie.AddActor(new(actor.FirstName, actor.LastName));
                 }

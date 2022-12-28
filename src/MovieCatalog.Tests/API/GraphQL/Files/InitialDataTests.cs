@@ -1,7 +1,7 @@
 using System.Text.Json;
-using Gofore.Demo.MovieCatalog.API.GraphQL.Files;
+using MovieCatalog.API.GraphQL.Files;
 
-namespace Gofore.Demo.MovieCatalog.Tests.API.GraphQL.Files;
+namespace MovieCatalog.Tests.API.GraphQL.Files;
 
 public class InitialDataTests
 {

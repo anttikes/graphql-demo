@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Gofore.Demo.MovieCatalog.Domain.Models;
+namespace MovieCatalog.Domain.Models;
 
 /// <summary>
 /// Represents a person; may also be an actor in, or a director of one or more movies
@@ -11,12 +11,12 @@ public sealed class Person
     /// Unique identifier of the person
     /// </summary>
     public Guid Id { get; private set; }
-    
+
     /// <summary>
     /// First name of the person
     /// </summary>
     public string FirstName { get; private set; }
-    
+
     /// <summary>
     /// Last name of the person
     /// </summary>

@@ -1,6 +1,6 @@
-using Gofore.Demo.MovieCatalog.Domain.Models;
+using MovieCatalog.Domain.Models;
 
-namespace Gofore.Demo.MovieCatalog.API.GraphQL.People;
+namespace MovieCatalog.API.GraphQL.People;
 
 /// <summary>
 /// Extends the <see cref="Person" /> type, allowing modifications of the type in the GraphQL schema

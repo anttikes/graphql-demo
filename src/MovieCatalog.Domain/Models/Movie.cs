@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Gofore.Demo.MovieCatalog.Domain.Models;
+namespace MovieCatalog.Domain.Models;
 
 /// <summary>
 /// Represents a movie
@@ -11,12 +11,12 @@ public sealed class Movie
     /// Maximum age limit that can be specified
     /// </summary>
     public const byte MAX_AGE_LIMIT_IN_YEARS = 21;
-    
+
     /// <summary>
     /// Maximum rating for a movie
     /// </summary>
     public const byte MAX_RATING_STARS = 5;
-    
+
     /// <summary>
     /// Limits the lowest possible year for movie publication
     /// </summary>
@@ -36,7 +36,7 @@ public sealed class Movie
     /// Year of publication for the movie
     /// </summary>
     public ushort Year { get; private set; }
-    
+
     /// <summary>
     /// Age limit of the movie; if zero then movie has no age limit
     /// </summary>
@@ -110,7 +110,7 @@ public sealed class Movie
 
         Year = newYear;
     }
-     
+
     /// <summary>
     /// Sets the age limit of the movie
     /// </summary>
