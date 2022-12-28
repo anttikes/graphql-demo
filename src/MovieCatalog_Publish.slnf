@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "path": "MovieCatalog.sln",
+    "projects": [
+      "MovieCatalog.API\\MovieCatalog.API.csproj",
+      "MovieCatalog.Domain\\MovieCatalog.Domain.csproj",
+      "MovieCatalog.Persistence\\MovieCatalog.Persistence.csproj"
+    ]
+  }
+}

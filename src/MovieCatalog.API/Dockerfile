@@ -5,15 +5,16 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["MovieCatalog.API/MovieCatalog.API.csproj", "MovieCatalog.API/"]
-RUN dotnet restore "MovieCatalog.API/MovieCatalog.API.csproj"
+COPY ["MovieCatalog.Domain/MovieCatalog.Domain.csproj", "MovieCatalog.Domain/"]
+COPY ["MovieCatalog.Persistence/MovieCatalog.Persistence.csproj", "MovieCatalog.Persistence/"]
+COPY ["MovieCatalog.sln", "."]
+COPY ["MovieCatalog_Publish.slnf", "."]
+RUN dotnet restore "MovieCatalog_Publish.slnf"
 COPY . .
 WORKDIR "/src/MovieCatalog.API"
-RUN dotnet build "MovieCatalog.API.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "MovieCatalog.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "MovieCatalog.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "MovieCatalog.API.dll"]

@@ -16,9 +16,9 @@ services:
       context: .
       dockerfile: MovieCatalog.API/Dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT: Development
-      - ASPNETCORE_URLS: http://+:80
-      - SQL_CONNECTION_STRING: "Server=sqlserver; Database=MovieCatalog; Encrypt=True; TrustServerCertificate=True; User ID=sa; Password=comPL3x-p4SSw0rd"
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      SQL_CONNECTION_STRING: "Server=sqlserver; Database=MovieCatalog; Encrypt=True; TrustServerCertificate=True; User ID=sa; Password=comPL3x-p4SSw0rd"
 
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2019-latest
