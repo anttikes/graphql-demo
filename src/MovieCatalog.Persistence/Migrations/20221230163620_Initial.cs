@@ -12,6 +12,18 @@ namespace MovieCatalog.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Genres",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genres_Id", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "People",
                 columns: table => new
                 {
@@ -33,7 +45,7 @@ namespace MovieCatalog.Persistence.Migrations
                     Year = table.Column<int>(type: "int", nullable: false),
                     AgeLimit = table.Column<byte>(type: "tinyint", nullable: false),
                     Rating = table.Column<byte>(type: "tinyint", nullable: false),
-                    Synopsis = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Synopsis = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DirectorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
@@ -70,9 +82,38 @@ namespace MovieCatalog.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "MovieGenres",
+                columns: table => new
+                {
+                    GenreId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MovieId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MovieGenres_GenreId_MovieId", x => new { x.GenreId, x.MovieId });
+                    table.ForeignKey(
+                        name: "FK_MovieGenres_Genres_GenreId",
+                        column: x => x.GenreId,
+                        principalTable: "Genres",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MovieGenres_Movies_MovieId",
+                        column: x => x.MovieId,
+                        principalTable: "Movies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Actors_MovieId",
                 table: "Actors",
+                column: "MovieId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MovieGenres_MovieId",
+                table: "MovieGenres",
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
@@ -86,6 +127,12 @@ namespace MovieCatalog.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Actors");
+
+            migrationBuilder.DropTable(
+                name: "MovieGenres");
+
+            migrationBuilder.DropTable(
+                name: "Genres");
 
             migrationBuilder.DropTable(
                 name: "Movies");

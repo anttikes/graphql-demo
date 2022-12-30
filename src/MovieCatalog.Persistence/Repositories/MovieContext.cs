@@ -7,6 +7,7 @@ public class MovieContext : DbContext
 {
     public DbSet<Movie> Movies => Set<Movie>();
     public DbSet<Person> People => Set<Person>();
+    public DbSet<Genre> Genres => Set<Genre>();
 
     public MovieContext(DbContextOptions<MovieContext> options) : base(options)
     {
@@ -28,7 +29,8 @@ public class MovieContext : DbContext
             entityBuilder.Property(x => x.Synopsis);
 
             entityBuilder.HasOne(x => x.Director)
-                         .WithMany(x => x.Directions);
+                         .WithMany(x => x.Directions)
+                         .HasForeignKey(x => x.DirectorId);
 
             entityBuilder.HasMany(x => x.Actors)
                          .WithMany(x => x.Appearances)
@@ -42,6 +44,19 @@ public class MovieContext : DbContext
                              joinEntity.HasKey("PersonId", "MovieId")
                                        .HasName("PK_Actors_PersonId_MovieId");
                          });
+
+            entityBuilder.HasMany(x => x.Genres)
+                         .WithMany(x => x.Movies)
+                         .UsingEntity(joinEntity =>
+                         {
+                             joinEntity.ToTable("MovieGenres");
+
+                             joinEntity.Property<Guid>("GenreId");
+                             joinEntity.Property<Guid>("MovieId");
+
+                             joinEntity.HasKey("GenreId", "MovieId")
+                                       .HasName("PK_MovieGenres_GenreId_MovieId");
+                         });
         });
 
         modelBuilder.Entity<Person>(entityBuilder =>
@@ -53,6 +68,16 @@ public class MovieContext : DbContext
 
             entityBuilder.Property(x => x.FirstName);
             entityBuilder.Property(x => x.LastName);
+        });
+
+        modelBuilder.Entity<Genre>(entityBuilder =>
+        {
+            entityBuilder.ToTable(nameof(Genres));
+
+            entityBuilder.HasKey(x => x.Id)
+                         .HasName("PK_Genres_Id");
+
+            entityBuilder.Property(x => x.Name);
         });
     }
 }
