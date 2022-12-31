@@ -1,5 +1,7 @@
-using MovieCatalog.Persistence.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using MovieCatalog.Domain.Extensions;
+using MovieCatalog.Persistence.Repositories;
 
 namespace MovieCatalog.API;
 
@@ -19,6 +21,9 @@ public static class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddFluentValidation();
+        builder.Services.AddMediatR(typeof(Program));
+
         builder.Services.AddPooledDbContextFactory<MovieContext>(optionsBuilder =>
         {
             var migrationAssemblyName = typeof(MovieContext).Assembly.GetName().Name;
@@ -37,16 +42,14 @@ public static class Program
             .AddType<UploadType>()
             .AddType<UnsignedShortType>()
             .RegisterDbContext<MovieContext>(DbContextKind.Pooled)
+            .RegisterService<IMediator>(ServiceKind.Pooled)
             .AddQueryType(descriptor => descriptor.Description("Contains the available queries"))
                 .AddTypeExtension<GraphQL.Movies.Queries>()
-                .AddTypeExtension<GraphQL.People.Queries>()
             .AddMutationType(descriptor => descriptor.Description("Contains the available mutations"))
-                .AddTypeExtension<GraphQL.Files.Mutations>()
+                .AddTypeExtension<GraphQL.InitialData.Mutations>()
                 .AddTypeExtension<GraphQL.Movies.Mutations>()
-                .AddTypeExtension<GraphQL.People.Mutations>()
-            .AddTypeExtension<GraphQL.Movies.MovieTypeExtension>()
-            .AddTypeExtension<GraphQL.People.PersonTypeExtension>()
-            .AddFiltering();
+            .AddFiltering()
+            .AddSorting();
 
         // Returning at this stage allows EF Core migrations to work against the API project
         return builder;

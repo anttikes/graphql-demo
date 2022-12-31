@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace MovieCatalog.API.GraphQL.Files;
+namespace MovieCatalog.API.GraphQL.InitialData;
 
 /// <summary>
 /// Facilitates deserialization of initial movie data from the JSON format

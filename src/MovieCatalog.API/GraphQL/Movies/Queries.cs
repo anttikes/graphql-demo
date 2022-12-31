@@ -12,5 +12,6 @@ internal sealed class Queries
     /// <param name="context">Entity Framework context to use for querying</param>
     /// <returns>A list of <see cref="Movie" /> object that match the criteria</returns>
     [UseFiltering]
+    [UseSorting]
     public IQueryable<Movie> GetMovies(MovieContext context) => context.Movies;
 }

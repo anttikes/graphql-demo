@@ -1,5 +1,5 @@
 using System.Text.Json;
-using MovieCatalog.API.GraphQL.Files;
+using MovieCatalog.API.GraphQL.InitialData;
 
 namespace MovieCatalog.Tests.API.GraphQL.Files;
 
@@ -11,7 +11,7 @@ public class InitialDataTests
         // The file is copied over by the project file
         var file = File.Open("movies-compact.json", FileMode.Open);
 
-        var content = JsonSerializer.Deserialize<IEnumerable<Movie>>(file, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        var content = JsonSerializer.Deserialize<Movie[]>(file, new JsonSerializerOptions(JsonSerializerDefaults.Web));
 
         file.Close();
 
