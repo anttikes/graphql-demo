@@ -1,4 +1,3 @@
-using System.Text;
 using FluentValidation;
 using MediatR;
 using MovieCatalog.Domain.Models;
@@ -8,7 +7,7 @@ using MovieCatalog.Domain.ValidationRules.People;
 namespace MovieCatalog.Domain.Commands.Movies;
 
 /// <summary>
-/// Represents a request to update movie's details
+/// Represents a request to update a movie's details
 /// </summary>
 public sealed class Update : IRequest<Movie>
 {
