@@ -6,9 +6,9 @@ namespace MovieCatalog.Domain.Models;
 public sealed class Movie
 {
     /// <summary>
-    /// Unique identifier of the movie
+    /// Identifier of the movie
     /// </summary>
-    public Guid Id { get; init; }
+    public Guid Id { get; init; } = Guid.NewGuid();
 
     /// <summary>
     /// Name of the movie
@@ -21,14 +21,14 @@ public sealed class Movie
     public ushort Year { get; set; }
 
     /// <summary>
-    /// Age limit of the movie; if zero then movie has no age limit
+    /// Age limit of the movie; if <c>null</c> then movie has no age limit
     /// </summary>
-    public byte AgeLimit { get; set; }
+    public byte? AgeLimit { get; set; }
 
     /// <summary>
-    /// Rating of the movie; if zero then movie has not been rated yet
+    /// Rating of the movie; if <c>null</c> then move has not been rated yet
     /// </summary>
-    public byte Rating { get; set; }
+    public byte? Rating { get; set; }
 
     /// <summary>
     /// Synopsis, or short summary, of the movie's plot
@@ -43,15 +43,10 @@ public sealed class Movie
     /// <summary>
     /// Genres of the movie; can be empty if the movie has no genres defined
     /// </summary>
-    public ICollection<Genre> Genres { get; } = new List<Genre>();
+    public ICollection<string> Genres { get; } = new List<string>();
 
     /// <summary>
-    /// Unique identifier of the person who is the director; if <c>null</c> then the movie has no director
+    /// Director of the movie
     /// </summary>
-    public Guid? DirectorId { get; set; }
-
-    /// <summary>
-    /// Director of the movie; if <c>null</c> then the movie has no director
-    /// </summary>
-    public Person? Director { get; set; }
+    public Person Director { get; set; } = null!;
 }

@@ -1,13 +1,14 @@
 using MovieCatalog.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Text.Json;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace MovieCatalog.Persistence.Repositories;
 
 public class MovieContext : DbContext
 {
     public DbSet<Movie> Movies => Set<Movie>();
-    public DbSet<Person> People => Set<Person>();
-    public DbSet<Genre> Genres => Set<Genre>();
 
     public MovieContext(DbContextOptions<MovieContext> options) : base(options)
     {
@@ -28,56 +29,53 @@ public class MovieContext : DbContext
             entityBuilder.Property(x => x.Rating);
             entityBuilder.Property(x => x.Synopsis);
 
-            entityBuilder.HasOne(x => x.Director)
-                         .WithMany(x => x.Directions)
-                         .HasForeignKey(x => x.DirectorId);
+            // The value comparer performs equality comparison, calculates a combined hash value, and is responsible for snapshots
+            var genresComparer = new ValueComparer<ICollection<string>>(
+                (c1, c2) => c1 != null && c2 != null && c1.SequenceEqual(c2),
+                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                c => c.ToList()
+            );
 
-            entityBuilder.HasMany(x => x.Actors)
-                         .WithMany(x => x.Appearances)
-                         .UsingEntity(joinEntity =>
-                         {
-                             joinEntity.ToTable("Actors");
+            // Use System.Text.Json to serialize the collection into a string type and back
+            var genresConverter = new ValueConverter<ICollection<string>, string>(
+                value => JsonSerializer.Serialize(value, new JsonSerializerOptions(JsonSerializerDefaults.Web)),
+                value => JsonSerializer.Deserialize<ICollection<string>>(value, new JsonSerializerOptions(JsonSerializerDefaults.Web))!
+            );
 
-                             joinEntity.Property<Guid>("PersonId");
-                             joinEntity.Property<Guid>("MovieId");
+            entityBuilder.Property(x => x.Genres)
+                         .HasConversion(genresConverter, genresComparer);
 
-                             joinEntity.HasKey("PersonId", "MovieId")
-                                       .HasName("PK_Actors_PersonId_MovieId");
-                         });
+            entityBuilder.OwnsOne(x => x.Director, director =>
+            {
+                director.ToTable("Directors");
 
-            entityBuilder.HasMany(x => x.Genres)
-                         .WithMany(x => x.Movies)
-                         .UsingEntity(joinEntity =>
-                         {
-                             joinEntity.ToTable("MovieGenres");
+                director.WithOwner()
+                        .HasForeignKey("MovieId")
+                        .HasConstraintName("FK_Directors_MovieId_Movies_Id");
 
-                             joinEntity.Property<Guid>("GenreId");
-                             joinEntity.Property<Guid>("MovieId");
+                director.Property<Guid>("Id");
+                director.HasKey("Id")
+                        .HasName("PK_Directors_Id");
 
-                             joinEntity.HasKey("GenreId", "MovieId")
-                                       .HasName("PK_MovieGenres_GenreId_MovieId");
-                         });
-        });
+                director.Property(x => x.FirstName);
+                director.Property(x => x.LastName);
+            });
 
-        modelBuilder.Entity<Person>(entityBuilder =>
-        {
-            entityBuilder.ToTable(nameof(People));
+            entityBuilder.OwnsMany(x => x.Actors, actor =>
+            {
+                actor.ToTable("Actors");
 
-            entityBuilder.HasKey(x => x.Id)
-                         .HasName("PK_People_Id");
+                actor.WithOwner()
+                     .HasForeignKey("MovieId")
+                     .HasConstraintName("FK_Actors_MovieId_Movies_Id");
 
-            entityBuilder.Property(x => x.FirstName);
-            entityBuilder.Property(x => x.LastName);
-        });
+                actor.Property<Guid>("Id");
+                actor.HasKey("Id")
+                     .HasName("PK_Actors_Id");
 
-        modelBuilder.Entity<Genre>(entityBuilder =>
-        {
-            entityBuilder.ToTable(nameof(Genres));
-
-            entityBuilder.HasKey(x => x.Id)
-                         .HasName("PK_Genres_Id");
-
-            entityBuilder.Property(x => x.Name);
+                actor.Property(x => x.FirstName);
+                actor.Property(x => x.LastName);
+            });
         });
     }
 }
