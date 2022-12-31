@@ -11,7 +11,7 @@
         "actors": [
             {
                 "firstName": "Robert",
-                "lastName": " Downey Jr."
+                "lastName": "Downey Jr."
             },
             {
                 "firstName": "Chris",
@@ -41,7 +41,7 @@
         "actors": [
             {
                 "firstName": "Peter",
-                "lastName": " Sallis"
+                "lastName": "Sallis"
             },
             {
                 "firstName": "Ralph",
@@ -65,7 +65,7 @@
         "actors": [
             {
                 "firstName": "Michelle",
-                "lastName": " Dockery"
+                "lastName": "Dockery"
             },
             {
                 "firstName": "Matthew",
@@ -95,7 +95,7 @@
         "actors": [
             {
                 "firstName": "Brad",
-                "lastName": " Pitt"
+                "lastName": "Pitt"
             },
             {
                 "firstName": "Tommy",
@@ -121,7 +121,7 @@
         "actors": [
             {
                 "firstName": "Jim",
-                "lastName": " Henson"
+                "lastName": "Henson"
             },
             {
                 "firstName": "Catherine",
@@ -151,7 +151,7 @@
         "actors": [
             {
                 "firstName": "Sigourney",
-                "lastName": " Weaver"
+                "lastName": "Weaver"
             }
         ],
         "director": {
@@ -172,11 +172,11 @@
         "actors": [
             {
                 "firstName": "Keir",
-                "lastName": " Dullea"
+                "lastName": "Dullea"
             },
             {
                 "firstName": "Gary",
-                "lastName": " Lockwood"
+                "lastName": "Lockwood"
             }
         ],
         "director": {
@@ -198,11 +198,11 @@
         "actors": [
             {
                 "firstName": "Nicholas",
-                "lastName": " Dullea"
+                "lastName": "Dullea"
             },
             {
                 "firstName": "Lily",
-                "lastName": " Collins"
+                "lastName": "Collins"
             }
         ],
         "director": {
