@@ -8,8 +8,10 @@ This demo uses the following technologies:
 - .NET Core 6.0
 - ASP.NET Core Web API
 - Hot Chocolate GraphQL framework
-- Entity Framework Core, EF Core Migrations and EF Core Compiled Models
- 
+- Entity Framework Core (with Migrations and Compiled Models)
+- MediatR
+- FluentValidations
+
 ## Running the demo
 To run the application, the following prerequirements should be met:
 - Docker Desktop (or a Linux equivalent with Docker host, client and Docker Compose plugin)
@@ -30,8 +32,8 @@ After installing the prerequirements, follow these instructions:
    - Issue `dotnet ef database update --startup-project "src/MovieCatalog.API/MovieCatalog.API.csproj" --project "src/MovieCatalog.Persistence/MovieCatalog.Persistence.csproj"`
 6. (If on Linux) Make the `deploy/deployInitialData.sh` executable, and issue `./deploy/deployInitialData.sh`
 7. (If on Windows) Use any suitable tool to send a similar network request as depicted in the file
-8. Open a browser window, navigate to `localhost:32741` and start running GraphQL queries
+8. Open a browser window, navigate to `localhost:32741` and start running GraphQL queries (filters & sorting also supported)
 9. Issue `docker compose --project-directory "src" stop` to stop the containers
 
 ## Notes
-The GraphQL API does not support modifying the actors participating in a movie or setting the director for a movie. The root cause is the use of constructor-based entity classes with no property setters, and those are not [properly supported](https://github.com/ChilliCream/hotchocolate/issues/4387) by the Hot Chocolate. To fix this the domain library would have to be refactored so that all business logic is extracted away from the entities.
+Filtering movies by genre during a query does not work. There's likely something wrong in the value comparer implementation, and likely a different kind of persistence mechanism is required in order for it to work correctly. Modifying genres or actors always overwrites the entire collection so simple add and remove operations are not supported at the moment

@@ -1,21 +1,26 @@
 using MovieCatalog.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using System.Text.Json;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace MovieCatalog.Persistence.Repositories;
 
+/// <summary>
+/// Enables persisting of movie data into a SQL Server database
+/// </summary>
 public class MovieContext : DbContext
 {
+    /// <summary>
+    /// Represents a collection of movies
+    /// </summary>
     public DbSet<Movie> Movies => Set<Movie>();
 
     public MovieContext(DbContextOptions<MovieContext> options) : base(options)
     {
     }
 
+    /// <inheritdoc />
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Configure movies
         modelBuilder.Entity<Movie>(entityBuilder =>
         {
             entityBuilder.ToTable(nameof(Movies));
@@ -29,22 +34,11 @@ public class MovieContext : DbContext
             entityBuilder.Property(x => x.Rating);
             entityBuilder.Property(x => x.Synopsis);
 
-            // The value comparer performs equality comparison, calculates a combined hash value, and is responsible for snapshots
-            var genresComparer = new ValueComparer<ICollection<string>>(
-                (c1, c2) => c1 != null && c2 != null && c1.SequenceEqual(c2),
-                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-                c => c.ToList()
-            );
-
-            // Use System.Text.Json to serialize the collection into a string type and back
-            var genresConverter = new ValueConverter<ICollection<string>, string>(
-                value => JsonSerializer.Serialize(value, new JsonSerializerOptions(JsonSerializerDefaults.Web)),
-                value => JsonSerializer.Deserialize<ICollection<string>>(value, new JsonSerializerOptions(JsonSerializerDefaults.Web))!
-            );
-
+            // Configure genres
             entityBuilder.Property(x => x.Genres)
-                         .HasConversion(genresConverter, genresComparer);
+                         .HasConversion<GenresConverter, GenresComparer>();
 
+            // Configure director
             entityBuilder.OwnsOne(x => x.Director, director =>
             {
                 director.ToTable("Directors");
@@ -61,6 +55,7 @@ public class MovieContext : DbContext
                 director.Property(x => x.LastName);
             });
 
+            // Configure actors
             entityBuilder.OwnsMany(x => x.Actors, actor =>
             {
                 actor.ToTable("Actors");

@@ -12,7 +12,7 @@ using MovieCatalog.Persistence.Repositories;
 namespace MovieCatalog.Persistence.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20221231120743_Initial")]
+    [Migration("20221231124309_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
