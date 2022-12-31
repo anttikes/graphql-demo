@@ -34,12 +34,7 @@ internal sealed class AddGenresCommandHandler : IRequestHandler<AddGenres, Movie
 
         foreach(var genre in request.Genres)
         {
-            var exists = movie.Genres.Any(x => x == genre);
-
-            if (!exists)
-            {
-                movie.Genres.Add(genre);
-            }
+            movie.Genres.Add(genre);
         }
 
         await _context.SaveChangesAsync(cancellationToken);

@@ -34,12 +34,7 @@ internal sealed class AddActorsCommandHandler : IRequestHandler<AddActors, Movie
 
         foreach(var actor in request.Actors)
         {
-            var exists = movie.Actors.Any(x => x.FirstName == actor.FirstName && x.LastName == actor.LastName);
-
-            if (!exists)
-            {
-                movie.Actors.Add(actor);
-            }
+            movie.Actors.Add(actor);
         }
 
         await _context.SaveChangesAsync(cancellationToken);

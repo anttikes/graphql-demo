@@ -34,12 +34,7 @@ internal sealed class RemoveActorsCommandHandler : IRequestHandler<RemoveActors,
 
         foreach(var actor in request.Actors)
         {
-            var existingActor = movie.Actors.SingleOrDefault(x => x.FirstName == actor.FirstName && x.LastName == actor.LastName);
-
-            if (existingActor is not null)
-            {
-                movie.Actors.Remove(existingActor);
-            }
+            movie.Actors.Remove(actor);
         }
 
         await _context.SaveChangesAsync(cancellationToken);

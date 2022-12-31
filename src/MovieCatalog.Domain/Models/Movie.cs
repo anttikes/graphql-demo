@@ -38,12 +38,12 @@ public sealed class Movie
     /// <summary>
     /// Actors of the movie; can be empty if the movie has no actors
     /// </summary>
-    public ICollection<Person> Actors { get; } = new List<Person>();
+    public HashSet<Person> Actors { get; } = new HashSet<Person>();
 
     /// <summary>
     /// Genres of the movie; can be empty if the movie has no genres defined
     /// </summary>
-    public ICollection<string> Genres { get; } = new List<string>();
+    public HashSet<string> Genres { get; } = new HashSet<string>();
 
     /// <summary>
     /// Director of the movie
