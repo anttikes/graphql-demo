@@ -36,4 +36,4 @@ After installing the prerequirements, follow these instructions:
 9. Issue `docker compose --project-directory "src" stop` to stop the containers
 
 ## Notes
-Filtering movies by genre during a query does not work. There's likely something wrong in the value comparer implementation, and likely a different kind of persistence mechanism is required in order for it to work correctly. Modifying genres or actors always overwrites the entire collection so simple add and remove operations are not supported at the moment
+Filtering movies by genre during a query does not work. There's likely something wrong in the value comparer implementation, and likely a different kind of persistence mechanism is required in order for it to work correctly.
