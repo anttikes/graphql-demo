@@ -42,4 +42,18 @@ internal sealed class Mutations
     /// <returns><c>True</c> if the operation succeeded; <c>false</c> otherwise</returns>
     public async Task<Movie> RemoveActors(RemoveActors request, [Service] IMediator mediator, CancellationToken cancellationToken)
         => await mediator.Send(request, cancellationToken);
+
+    /// <summary>
+    /// Adds one or more genres to a movie
+    /// </summary>
+    /// <returns><c>True</c> if the operation succeeded; <c>false</c> otherwise</returns>
+    public async Task<Movie> AddGenres(AddGenres request, [Service] IMediator mediator, CancellationToken cancellationToken)
+        => await mediator.Send(request, cancellationToken);
+
+    /// <summary>
+    /// Removes one or more genres from a movie
+    /// </summary>
+    /// <returns><c>True</c> if the operation succeeded; <c>false</c> otherwise</returns>
+    public async Task<Movie> RemoveGenres(RemoveGenres request, [Service] IMediator mediator, CancellationToken cancellationToken)
+        => await mediator.Send(request, cancellationToken);
 }
