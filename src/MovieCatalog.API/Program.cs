@@ -34,7 +34,6 @@ public static class Program
             optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING"), opt => opt.MigrationsAssembly(migrationAssemblyName));
 
             optionsBuilder.EnableDetailedErrors();
-            optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
         });
 
         builder.Services
