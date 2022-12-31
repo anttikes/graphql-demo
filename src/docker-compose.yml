@@ -26,6 +26,11 @@ services:
     ports:
       - 1433:1433
     restart: always
+    volumes:
+      - sqlvolume:/var/opt/mssql
     environment:
       ACCEPT_EULA: "y"
       MSSQL_SA_PASSWORD: "comPL3x-p4SSw0rd"
+
+volumes:
+  sqlvolume:
