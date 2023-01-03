@@ -25,7 +25,7 @@ internal sealed class RemoveGenresCommandHandler : IRequestHandler<RemoveGenres,
     {
         await _validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var movie = _context.Movies.Find(request.MovieId);
+        var movie = await _context.Movies.FindAsync(request.MovieId);
 
         if (movie is null)
         {
