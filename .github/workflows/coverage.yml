@@ -24,12 +24,6 @@ jobs:
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
         filename: coverage/**/coverage.cobertura.xml
-        badge: true
-        format: markdown
-        output: both
-        
-    - name: Upload Coverage Report Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: my-artifact
-        path: code-coverage-results.md
+        badge: false
+        format: test
+        output: console    
