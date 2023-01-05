@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 namespace MovieCatalog.Persistence.Repositories;
 
 /// <summary>
-/// Provides equality comparison, combined hash value calcuation and snapshot generation mechanics for the <see cref="Movie.Genres" /> property
+/// Provides equality comparison, combined hash value calculation and snapshot generation mechanics for the <see cref="Movie.Genres" /> property
 /// </summary>
 internal class GenresComparer : ValueComparer<HashSet<string>>
 {
