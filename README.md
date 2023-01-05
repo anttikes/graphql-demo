@@ -1,5 +1,7 @@
-# Demo: GraphQL and Entity Framework [![Build and test](https://github.com/anttikes/graphql-demo/actions/workflows/coverage.yml/badge.svg)](https://github.com/anttikes/graphql-demo/actions/workflows/coverage.yml)
+# Demo: GraphQL and Entity Framework
 This demonstration presents a simple movie catalog with a GraphQL-based API.
+
+[![Build and test](https://github.com/anttikes/graphql-demo/actions/workflows/coverage.yml/badge.svg)](https://github.com/anttikes/graphql-demo/actions/workflows/coverage.yml)
 
 ## Technology stack
 This demo uses the following technologies:
