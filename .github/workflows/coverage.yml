@@ -20,10 +20,10 @@ jobs:
     - name: Test
       run: dotnet test --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage ./src/MovieCatalog.sln
       
-    - name: Coverage Summary Report
+    - name: Generate Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
         filename: coverage/**/coverage.cobertura.xml
         badge: true
-        hide_branch_rate: false
-        hide_complexity: true
+        format: markdown
+        output: file
