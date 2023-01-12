@@ -12,6 +12,14 @@ public static class Program
         var app = CreateHostBuilder(args)
                     .Build();
 
+        // Perform database migrations during startup
+        var contextFactory = app.Services.GetRequiredService<IDbContextFactory<MovieContext>>();
+
+        var context = contextFactory.CreateDbContext();
+        context.Database.Migrate();
+        context.Dispose();
+        context = null;
+
         app.MapGraphQL("/");
 
         app.Run();

@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "c5a710fb-f0f3-45f5-a3e7-fba7176010f8",
+		"name": "MovieCatalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20422967"
+	},
+	"item": [
+		{
+			"name": "Upload initial data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "operations",
+							"value": "{ \"query\": \"mutation ($file: Upload!) { uploadInitialData(file: $file) { id }}\", \"variables\": { \"file\": null } }",
+							"type": "text"
+						},
+						{
+							"key": "map",
+							"value": "{ \"0\": [\"variables.file\"] }",
+							"type": "text"
+						},
+						{
+							"key": "0",
+							"type": "file",
+							"src": "/C:/Work/graphql-demo/deploy/movies-compact.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:32741",
+					"host": [
+						"localhost"
+					],
+					"port": "32741"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movies and actors",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n    movies {\r\n        id\r\n        name\r\n        actors { \r\n            firstName\r\n            lastName\r\n        }\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:32741",
+					"host": [
+						"localhost"
+					],
+					"port": "32741"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create sample movie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n    addMovie(request: {\r\n        name: \"The best movie ever\"\r\n        synopsis: \"Simply the best, and nothing less\"\r\n        year: 2022\r\n        director: {\r\n            firstName: \"Ridley\"\r\n            lastName: \"Scott\"\r\n        }\r\n        actors: [\r\n            {\r\n                firstName: \"Tina\"\r\n                lastName: \"Turner\"\r\n            }\r\n        ]\r\n    }) {\r\n        id\r\n        name\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:32741",
+					"host": [
+						"localhost"
+					],
+					"port": "32741"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update movie age limit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation($movieId: UUID!) {\r\n    updateMovie(request: {\r\n        movieId: $movieId\r\n        ageLimit: 15\r\n    }) {\r\n        id\r\n        name\r\n        ageLimit\r\n    }\r\n}",
+						"variables": "{\r\n    \"movieId\": \"\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "localhost:32741",
+					"host": [
+						"localhost"
+					],
+					"port": "32741"
+				}
+			},
+			"response": []
+		}
+	]
+}

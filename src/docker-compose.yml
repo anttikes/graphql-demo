@@ -24,7 +24,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: sqlserver
     ports:
-      - 1433:1433
+      - 2368:1433
     restart: always
     volumes:
       - sqlvolume:/var/opt/mssql
